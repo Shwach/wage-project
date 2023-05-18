@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/CSS/style.css">
+    <title>시급 계산기</title>
+</head>
+<body>
+    <div class="container">
+        <div class="wage_container" id="wage_project">
+            <span id="wage_title">시급과 시작시간을 입력하세요</span>
+                <div style="margin-bottom: 30px;">
+                    <div class="wage_input_box">
+                        <input class="wage_input" id="hour_wage" type="text" size="7" dir="rtl" value="9620"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+                        <span >원</span>
+                    </div>
+                    
+                    <div class="wage_input_box">
+                        <input class="wage_input" id="start_time" type="text" size="7" dir="rtl" value="9"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+                        <span >시</span>
+                       
+                    </div>
+                    
+                <button class="button" id="generate_wage_name">시작</button>
+                <div id="print_name" style="margin-top: 10px;">   
+                    <span id="wage_sum"></span>
+                    <span>원 벌었습니다.</span>
+                </div>
+        </div>
+        <div class="wage_container" id="wage_project"></div>
+    </div>
+    <!--<script src="assets/JS/wage.js"></script>-->
+    <script>
+        
+        document.getElementById("generate_wage_name").onclick =  function() 
+        {
+            var now = new Date();
+            var hours = now.getHours(); //현재 시간에서 시간만 가져옴
+
+            var startTime = document.getElementById("start_time").value;
+            var workingTime = hours - startTime;        
+            var wage = document.getElementById("hour_wage").value * workingTime;
+            //alert(wage);
+
+            var name = document.getElementById("wage_sum");
+            name.innerText = wage;
+        }
+    </script>
+</body>
+</html>
